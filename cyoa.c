@@ -28,6 +28,24 @@ const unsigned char attr_table[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 };
 
+static unsigned int wait = 300;
+static unsigned char frame = 0;
+
+void title_blink()
+{
+  if(wait)
+  {
+    wait--;
+  }
+  else
+  {
+    pal_col(5,(frame&32)?0x0f:0x00);
+    pal_col(7,(frame&32)?0x0f:0x30);
+    frame++;
+    wait = 300;
+  }
+}
+
 void main(void)
 {
   famitone_init(cyoa_music_data);
@@ -59,5 +77,9 @@ void main(void)
   
   music_play(0);
   
-  while(1);
+  while(1)
+  {
+    title_blink();
+    if(
+  }
 }
