@@ -4,6 +4,8 @@
 //#link "famitone2.s"
 
 //#link "cyoamusic.s"
+//#link "cyoasounds.s"
+
 
 #define NES_MIRRORING 1
 
@@ -15,6 +17,7 @@
 #define SELECT 0x01
 
 extern char cyoa_music_data[];
+extern char sounds[];
 
 const unsigned char palette[] =
 {
@@ -113,6 +116,7 @@ void main(void)
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
+  sfx_init(&sounds);
   nmi_set_callback(famitone_update);
   
   ppu_off();
@@ -167,6 +171,7 @@ void main(void)
       {
         scroll((32*8), 0);
         music_stop();
+        sfx_play(0, 0);
         delay(20);
         select_scr();
         music_is_playing = false;
@@ -177,10 +182,10 @@ void main(void)
     {
       if(!music_is_playing) { music_play(SELECT_M); music_is_playing = true; }
       oam_id = oam_spr(2*8, arr_y, 0x1f, 0, oam_id);
-      if(p1 & PAD_UP)arr_y -= 16;
-      if(p1 & PAD_DOWN)arr_y += 16;
-      if(p2 & PAD_UP)arr_y -= 16;
-      if(p2 & PAD_DOWN)arr_y += 16;
+      if(p1 & PAD_UP) { arr_y -= 16; sfx_play(1, 0); }
+      if(p1 & PAD_DOWN) { arr_y += 16; sfx_play(1, 0); }
+      if(p2 & PAD_UP) { arr_y -= 16; sfx_play(1, 0); }
+      if(p2 & PAD_DOWN) { arr_y += 16; sfx_play(1, 0); }
       if(arr_y > (7*8)+16*5)arr_y = 7*8;
       if(arr_y < 7*8)arr_y = (7*8)+16*5;
     }
