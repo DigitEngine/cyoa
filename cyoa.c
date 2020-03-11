@@ -41,36 +41,6 @@ const unsigned char attr_table[] =
 static unsigned int wait = 300;
 static unsigned char frame = 0;
 
-void fade_in()
-{
-  unsigned char vb;
-  for(vb=0; vb<=4; vb++)
-  {
-    pal_bright(vb);
-    
-    ppu_wait_frame();
-    ppu_wait_frame();
-    ppu_wait_frame();
-    ppu_wait_frame();
-  }
-}
-
-void fade_out()
-{
-  unsigned char vb;
-  unsigned char i;
-  for(i=4; i>0; i--)
-  {
-    vb--;
-    pal_bright(vb);
-    
-    ppu_wait_frame();
-    ppu_wait_frame();
-    ppu_wait_frame();
-    ppu_wait_frame();
-  }
-}
-
 void title_blink()
 {
   if(wait)
@@ -82,8 +52,28 @@ void title_blink()
     pal_col(5,(frame&32)?0x0f:0x00);
     pal_col(7,(frame&32)?0x0f:0x30);
     frame++;
-    wait = 300;
+    wait = 35;
   }
+}
+
+void select_scr()
+{
+  ppu_off();
+  
+  vram_adr(NAMETABLE_B);
+  vram_fill(0x20, 32*30);
+  
+  vram_adr(NTADR_B(2,2));
+  vram_write("Please select your adventure", sizeof("Please select your adventure."));
+  
+  vram_adr(NTADR_B(4,7));
+  vram_write("Trapped Inside an Orange", sizeof("Trapped Inside an Orange"));
+  
+  vram_adr(NTADR_B(8,26));
+  vram_write("\x10 2020 MSDT Games.", sizeof("\x10 2020 MSDT Games."));
+  
+  delay(30);
+  ppu_on_all();
 }
 
 void main(void)
@@ -97,7 +87,7 @@ void main(void)
   
   unsigned char game_state = TITLE;
   
-  unsigned char p1;
+  byte p1;
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
@@ -131,26 +121,34 @@ void main(void)
   
   while(1)
   {
+    p1 = pad_trigger(0);
     if(game_state == TITLE)
     {
       if(scr == (32*8))
       {
         title_blink();
         if(!music_is_playing) { music_play(0); music_is_playing = true; }
+      	
       }
       mult--;
       if(mult == 0)
       {
         if(scr != (32*8))scr++;
         scroll(scr, 0);
-        mult=200;
+        mult=30;
       }
-      p1 = pad_state(0);
       if(p1 & PAD_START)
       {
-        fade_out();
+        scroll((32*8), 0);
+        delay(40);
+        select_scr();
+        music_stop();
         game_state = SELECT;
       }
+    }
+    if(game_state == SELECT)
+    {
+      
     }
   }
 }
