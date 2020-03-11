@@ -31,6 +31,8 @@ const unsigned char attr_table[] =
 static unsigned int wait = 300;
 static unsigned char frame = 0;
 
+static unsigned char bright;
+
 void title_blink()
 {
   if(wait)
@@ -46,8 +48,26 @@ void title_blink()
   }
 }
 
+void fade_to(unsigned to)
+{
+  while(bright!=to)
+  {
+    delay(4);
+    if(bright<to) ++bright; else --bright;
+    pal_bright(bright);
+  }
+
+  if(!bright)
+  {
+    ppu_off();
+    set_vram_update(NULL);
+    scroll(0,0);
+  }
+}
+
 void main(void)
 {
+  famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
   nmi_set_callback(famitone_update);
   
