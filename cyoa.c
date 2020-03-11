@@ -41,7 +41,35 @@ const unsigned char attr_table[] =
 static unsigned int wait = 300;
 static unsigned char frame = 0;
 
-static unsigned char bright;
+void fade_in()
+{
+  unsigned char vb;
+  for(vb=0; vb<=4; vb++)
+  {
+    pal_bright(vb);
+    
+    ppu_wait_frame();
+    ppu_wait_frame();
+    ppu_wait_frame();
+    ppu_wait_frame();
+  }
+}
+
+void fade_out()
+{
+  unsigned char vb;
+  unsigned char i;
+  for(i=4; i>0; i--)
+  {
+    vb--;
+    pal_bright(vb);
+    
+    ppu_wait_frame();
+    ppu_wait_frame();
+    ppu_wait_frame();
+    ppu_wait_frame();
+  }
+}
 
 void title_blink()
 {
@@ -58,23 +86,6 @@ void title_blink()
   }
 }
 
-void fade_to(unsigned to)
-{
-  while(bright!=to)
-  {
-    delay(4);
-    if(bright<to) ++bright; else --bright;
-    pal_bright(bright);
-  }
-
-  if(!bright)
-  {
-    ppu_off();
-    set_vram_update(NULL);
-    scroll(0,0);
-  }
-}
-
 void main(void)
 {
   int scr = 0;
@@ -85,6 +96,8 @@ void main(void)
   unsigned char oam_id = 0;
   
   unsigned char game_state = TITLE;
+  
+  unsigned char p1;
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
@@ -131,6 +144,12 @@ void main(void)
         if(scr != (32*8))scr++;
         scroll(scr, 0);
         mult=200;
+      }
+      p1 = pad_state(0);
+      if(p1 & PAD_START)
+      {
+        fade_out();
+        game_state = SELECT;
       }
     }
   }
