@@ -167,7 +167,7 @@ void main(void)
       {
         scroll((32*8), 0);
         music_stop();
-        delay(40);
+        delay(20);
         select_scr();
         music_is_playing = false;
         game_state = SELECT;
@@ -179,8 +179,8 @@ void main(void)
       oam_id = oam_spr(2*8, arr_y, 0x1f, 0, oam_id);
       if(p1 & PAD_UP)arr_y -= 16;
       if(p1 & PAD_DOWN)arr_y += 16;
-      if(p1 & PAD_UP)arr_y -= 16;
-      if(p1 & PAD_DOWN)arr_y += 16;
+      if(p2 & PAD_UP)arr_y -= 16;
+      if(p2 & PAD_DOWN)arr_y += 16;
       if(arr_y > (7*8)+16*5)arr_y = 7*8;
       if(arr_y < 7*8)arr_y = (7*8)+16*5;
     }
