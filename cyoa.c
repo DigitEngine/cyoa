@@ -4,6 +4,9 @@
 //#link "famitone2.s"
 
 //#link "cyoamusic.s"
+
+#define NES_MIRRORING 1
+
 extern char cyoa_music_data[];
 
 const unsigned char palette[] =
@@ -67,6 +70,8 @@ void fade_to(unsigned to)
 
 void main(void)
 {
+  int scr = 32*8;
+  
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
   nmi_set_callback(famitone_update);
@@ -74,6 +79,8 @@ void main(void)
   ppu_off();
   
   pal_bg(palette);
+  
+  scroll(scr, 0);
   
   vram_adr(NTADR_A(3,4));
   vram_write("Choose your adventure and", sizeof("Choose your adventure and"));
@@ -100,5 +107,8 @@ void main(void)
   while(1)
   {
     title_blink();
+    
+    if(scr != (32*8)*2)scr++;
+    scroll(scr, 0);
   }
 }
