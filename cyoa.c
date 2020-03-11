@@ -7,6 +7,13 @@
 
 #define NES_MIRRORING 1
 
+#define TITLE_M 0x00
+#define ORANGE_M 0x01
+#define SELECT_M 0x02
+
+#define TITLE 0x00
+#define SELECT 0x01
+
 extern char cyoa_music_data[];
 
 const unsigned char palette[] =
@@ -70,10 +77,14 @@ void fade_to(unsigned to)
 
 void main(void)
 {
-  int scr = 32*8;
+  int scr = 0;
   int mult = 400;
   
   bool music_is_playing = false;
+  
+  unsigned char oam_id = 0;
+  
+  unsigned char game_state = TITLE;
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
@@ -85,39 +96,42 @@ void main(void)
   
   scroll(scr, 0);
   
-  vram_adr(NTADR_A(3,4));
+  vram_adr(NTADR_B(3,4));
   vram_write("Choose your adventure and", sizeof("Choose your adventure and"));
   
-  vram_adr(NTADR_A(6,6));
+  vram_adr(NTADR_B(6,6));
   vram_write("that sort of thing.", sizeof("that sort of thing."));
 
-  vram_adr(NTADR_A(8,16));
+  vram_adr(NTADR_B(8,16));
   vram_write("Press Start Key", sizeof("Press Start Key"));
   
-  vram_adr(NTADR_A(2,24));
+  vram_adr(NTADR_B(2,24));
   vram_write("Created by Sean, Matthew and", sizeof("Created by Sean, Matthew and"));
   
-  vram_adr(NTADR_A(13,26));
+  vram_adr(NTADR_B(13,26));
   vram_write("Declan", 7);
   
-  vram_adr(0x23c0);
+  vram_adr(0x27c0);
   vram_write(attr_table, 0x40);
   
   ppu_on_all();
   
   while(1)
   {
-    if(scr == (32*8)*2)
+    if(game_state == TITLE)
     {
-      title_blink();
-      if(!music_is_playing) { music_play(0); music_is_playing = true; }
-    }
-    mult--;
-    if(mult == 0)
-    {
-      if(scr != (32*8)*2)scr++;
-      scroll(scr, 0);
-      mult=200;
+      if(scr == (32*8))
+      {
+        title_blink();
+        if(!music_is_playing) { music_play(0); music_is_playing = true; }
+      }
+      mult--;
+      if(mult == 0)
+      {
+        if(scr != (32*8))scr++;
+        scroll(scr, 0);
+        mult=200;
+      }
     }
   }
 }
