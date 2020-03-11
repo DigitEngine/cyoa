@@ -83,6 +83,8 @@ void main(void)
   
   bool music_is_playing = false;
   
+  bool nf = true;
+  
   unsigned char oam_id = 0;
   
   unsigned char game_state = TITLE;
@@ -127,8 +129,11 @@ void main(void)
       if(scr == (32*8))
       {
         title_blink();
-        if(!music_is_playing) { music_play(0); music_is_playing = true; }
-      	
+        if(!music_is_playing)
+        {
+          music_play(TITLE_M); 
+          if(nf)music_is_playing = true;
+        }
       }
       mult--;
       if(mult == 0)
@@ -143,12 +148,14 @@ void main(void)
         delay(40);
         select_scr();
         music_stop();
+        nf = false;
+        music_is_playing = false;
         game_state = SELECT;
       }
     }
     if(game_state == SELECT)
     {
-      
+      if(!music_is_playing)music_play(SELECT_M);
     }
   }
 }
