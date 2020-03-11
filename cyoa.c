@@ -80,6 +80,5 @@ void main(void)
   while(1)
   {
     title_blink();
-    if(
   }
 }
