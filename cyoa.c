@@ -24,6 +24,8 @@ const unsigned char palette[] =
   0x00,0x0f,0x30, 0x0,
   0x00,0x0f,0x30, 0x0,
   0x00,0x0f,0x30, 0x0,
+  
+  0x03,0x0f,0x33, 0x0,
 };
 
 const unsigned char attr_table[] =
@@ -63,11 +65,26 @@ void select_scr()
   vram_adr(NAMETABLE_B);
   vram_fill(0x20, 32*30);
   
-  vram_adr(NTADR_B(2,2));
-  vram_write("Please select your adventure", sizeof("Please select your adventure."));
+  vram_adr(NTADR_B(3,2));
+  vram_write("Please choose an adventure", sizeof("Please choose an adventure"));
   
   vram_adr(NTADR_B(4,7));
-  vram_write("Trapped Inside an Orange", sizeof("Trapped Inside an Orange"));
+  vram_write("Trapped inside an Orange", sizeof("Trapped inside an Orange"));
+  
+  vram_adr(NTADR_B(4,9));	// Inside Declan
+  vram_write("Inside Declan", sizeof("Inside Declan"));
+  
+  vram_adr(NTADR_B(4,11));	// Inside Capri-Sun
+  vram_write("Trapped inside Capri-Sun", sizeof("Trapped inside Capri-Sun"));
+  
+  vram_adr(NTADR_B(4,13));	// Stuck In Supermarket
+  vram_write("Stuck in a store at night", sizeof("Stuck in a store at night"));
+  
+  vram_adr(NTADR_B(4,15));	// Tiny
+  vram_write("You're Tiny", sizeof("You're Tiny"));
+  
+  vram_adr(NTADR_B(4,17));	// Inside Computer
+  vram_write("Inside of a computer", 20);
   
   vram_adr(NTADR_B(8,26));
   vram_write("\x10 2020 MSDT Games.", sizeof("\x10 2020 MSDT Games."));
@@ -90,6 +107,9 @@ void main(void)
   unsigned char game_state = TITLE;
   
   byte p1;
+  byte p2;
+  
+  int arr_y = 7*8;
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
@@ -97,7 +117,7 @@ void main(void)
   
   ppu_off();
   
-  pal_bg(palette);
+  pal_all(palette);
   
   scroll(scr, 0);
   
@@ -124,6 +144,7 @@ void main(void)
   while(1)
   {
     p1 = pad_trigger(0);
+    p2 = pad_trigger(1);
     if(game_state == TITLE)
     {
       if(scr == (32*8))
@@ -132,7 +153,7 @@ void main(void)
         if(!music_is_playing)
         {
           music_play(TITLE_M); 
-          if(nf)music_is_playing = true;
+          music_is_playing = true;
         }
       }
       mult--;
@@ -140,22 +161,28 @@ void main(void)
       {
         if(scr != (32*8))scr++;
         scroll(scr, 0);
-        mult=30;
+        mult=10;
       }
       if(p1 & PAD_START)
       {
         scroll((32*8), 0);
+        music_stop();
         delay(40);
         select_scr();
-        music_stop();
-        nf = false;
         music_is_playing = false;
         game_state = SELECT;
       }
     }
     if(game_state == SELECT)
     {
-      if(!music_is_playing)music_play(SELECT_M);
+      if(!music_is_playing) { music_play(SELECT_M); music_is_playing = true; }
+      oam_id = oam_spr(2*8, arr_y, 0x1f, 0, oam_id);
+      if(p1 & PAD_UP)arr_y -= 16;
+      if(p1 & PAD_DOWN)arr_y += 16;
+      if(p1 & PAD_UP)arr_y -= 16;
+      if(p1 & PAD_DOWN)arr_y += 16;
+      if(arr_y > (7*8)+16*5)arr_y = 7*8;
+      if(arr_y < 7*8)arr_y = (7*8)+16*5;
     }
   }
 }
