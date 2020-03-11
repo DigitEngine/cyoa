@@ -71,6 +71,9 @@ void fade_to(unsigned to)
 void main(void)
 {
   int scr = 32*8;
+  int mult = 400;
+  
+  bool music_is_playing = false;
   
   famitone_init(cyoa_music_data);
   famitone_init(cyoa_music_data);
@@ -102,13 +105,19 @@ void main(void)
   
   ppu_on_all();
   
-  music_play(0);
-  
   while(1)
   {
-    title_blink();
-    
-    if(scr != (32*8)*2)scr++;
-    scroll(scr, 0);
+    if(scr == (32*8)*2)
+    {
+      title_blink();
+      if(!music_is_playing) { music_play(0); music_is_playing = true; }
+    }
+    mult--;
+    if(mult == 0)
+    {
+      if(scr != (32*8)*2)scr++;
+      scroll(scr, 0);
+      mult=200;
+    }
   }
 }
