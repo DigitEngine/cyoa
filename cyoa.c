@@ -112,7 +112,10 @@ void select_scr()
   vram_write("You're Tiny", sizeof("You're Tiny"));
   
   vram_adr(NTADR_B(4,17));
-  vram_write("Inside of a computer", 20);
+  vram_write("Inside of a computer", sizeof("Inside of a computer"));
+  
+  vram_adr(NTADR_B(6,22));
+  vram_write("Press A Key to select.", sizeof("Press A Key to select."));
   
   vram_adr(NTADR_B(8,26));
   vram_write("\x10 2020 MSDT Games.", sizeof("\x10 2020 MSDT Games."));
@@ -199,6 +202,7 @@ void main(void)
         sfx_play(0, 0);
         delay(20);
         select_scr();
+        oam_clear();
         music_is_playing = false;
         game_state = SELECT;
       }
@@ -214,11 +218,13 @@ void main(void)
       if(arr_y > (7*8)+16*5)arr_y = 7*8;
       if(arr_y < 7*8)arr_y = (7*8)+16*5;
       
-      if(p1 & PAD_START && arr_y == 7*8)
+      if(p1 & PAD_A && arr_y == 7*8)
       {
         music_stop();
         sfx_play(0, 0);
+        ppu_off();
         delay(20);
+        oam_clear();
         orange_base();
         music_is_playing = false;
         game_state = ORANGE;
@@ -227,7 +233,6 @@ void main(void)
     if(game_state == ORANGE)
     {
       if(!music_is_playing) { music_play(ORANGE_M); music_is_playing = true; }
-      
     }
   }
 }
