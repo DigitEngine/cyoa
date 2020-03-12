@@ -1,5 +1,15 @@
 
 #include "neslib.h"
+
+void clear_screen()
+{
+  vram_adr(NAMETABLE_B);
+  vram_fill(0x20, 32*30);
+}
+
+#include "orange.h"
+
+
 //#link "chr_generic.s"
 //#link "famitone2.s"
 
@@ -15,6 +25,7 @@
 
 #define TITLE 0x00
 #define SELECT 0x01
+#define ORANGE 0x02
 
 extern char cyoa_music_data[];
 extern char sounds[];
@@ -29,6 +40,18 @@ const unsigned char palette[] =
   0x00,0x0f,0x30, 0x0,
   
   0x03,0x0f,0x33, 0x0,
+};
+
+const unsigned char blank_table[] =
+{
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 };
 
 const unsigned char attr_table[] =
@@ -65,8 +88,10 @@ void select_scr()
 {
   ppu_off();
   
-  vram_adr(NAMETABLE_B);
-  vram_fill(0x20, 32*30);
+  clear_screen();
+  
+  vram_adr(0x27c0);
+  vram_write(blank_table, 0x40);
   
   vram_adr(NTADR_B(3,2));
   vram_write("Please choose an adventure", sizeof("Please choose an adventure"));
@@ -74,19 +99,19 @@ void select_scr()
   vram_adr(NTADR_B(4,7));
   vram_write("Trapped inside an Orange", sizeof("Trapped inside an Orange"));
   
-  vram_adr(NTADR_B(4,9));	// Inside Declan
+  vram_adr(NTADR_B(4,9));
   vram_write("Inside Declan", sizeof("Inside Declan"));
   
-  vram_adr(NTADR_B(4,11));	// Inside Capri-Sun
+  vram_adr(NTADR_B(4,11));
   vram_write("Trapped inside Capri-Sun", sizeof("Trapped inside Capri-Sun"));
   
-  vram_adr(NTADR_B(4,13));	// Stuck In Supermarket
+  vram_adr(NTADR_B(4,13));
   vram_write("Stuck in a store at night", sizeof("Stuck in a store at night"));
   
-  vram_adr(NTADR_B(4,15));	// Tiny
+  vram_adr(NTADR_B(4,15));
   vram_write("You're Tiny", sizeof("You're Tiny"));
   
-  vram_adr(NTADR_B(4,17));	// Inside Computer
+  vram_adr(NTADR_B(4,17));
   vram_write("Inside of a computer", 20);
   
   vram_adr(NTADR_B(8,26));
@@ -188,6 +213,21 @@ void main(void)
       if(p2 & PAD_DOWN) { arr_y += 16; sfx_play(1, 0); }
       if(arr_y > (7*8)+16*5)arr_y = 7*8;
       if(arr_y < 7*8)arr_y = (7*8)+16*5;
+      
+      if(p1 & PAD_START && arr_y == 7*8)
+      {
+        music_stop();
+        sfx_play(0, 0);
+        delay(20);
+        orange_base();
+        music_is_playing = false;
+        game_state = ORANGE;
+      }
+    }
+    if(game_state == ORANGE)
+    {
+      if(!music_is_playing) { music_play(ORANGE_M); music_is_playing = true; }
+      
     }
   }
 }
