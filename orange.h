@@ -28,3 +28,27 @@ void orange_base()
   
   ppu_on_all();
 }
+
+void orange_1a()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(1, 2));
+  vram_write("Player 1 and Player 2 go", sizeof("Player 1 and Player 2 go"));
+  
+  vram_adr(NTADR_B(1, 3));
+  vram_write("inside Citrus Twist. They", sizeof("Citrus Twist. They"));
+  
+  vram_adr(NTADR_B(1, 4));
+  vram_write("orange peels on the ground, and", sizeof("orange peels on the ground, and"));
+  
+  vram_adr(NTADR_B(1, 5));
+  vram_write("a giant red button in the", sizeof("a giant red button in the"));
+  
+  vram_adr(NTADR_B(1, 6));
+  vram_write("middle of the room.", sizeof("middle of the room."));
+  
+  ppu_on_all();
+}

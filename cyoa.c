@@ -27,6 +27,9 @@ void clear_screen()
 #define SELECT 0x01
 #define ORANGE 0x02
 
+// ORANGE Macros
+#define BASE 0x00
+
 extern char cyoa_music_data[];
 extern char sounds[];
 
@@ -137,6 +140,8 @@ void main(void)
   
   unsigned char game_state = TITLE;
   
+  unsigned char orange_state = BASE;
+  
   byte p1;
   byte p2;
   
@@ -225,7 +230,7 @@ void main(void)
         ppu_off();
         delay(20);
         oam_clear();
-        orange_base();
+        orange_1a();
         music_is_playing = false;
         game_state = ORANGE;
       }
@@ -233,6 +238,10 @@ void main(void)
     if(game_state == ORANGE)
     {
       if(!music_is_playing) { music_play(ORANGE_M); music_is_playing = true; }
+      if(orange_state == BASE)
+      {
+        
+      }
     }
   }
 }
