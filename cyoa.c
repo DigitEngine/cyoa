@@ -189,7 +189,7 @@ void main(void)
         title_blink();
         if(!music_is_playing)
         {
-          music_play(TITLE_M); 
+          music_play(0); 
           music_is_playing = true;
         }
       }
