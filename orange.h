@@ -89,11 +89,85 @@ void orange_1b()
   vram_adr(NTADR_B(2, 9));
   vram_write("What a disgusting way to die.", sizeof("Whay a disgusting way to die."));
   
-  vram_adr(NTADR_B(2, 14));
+  vram_adr(NTADR_B(3, 14));
   vram_write("A)Attempt to drink the pee", sizeof("A)Attempt to drink the pee"));
   
-  vram_adr(NTADR_B(2, 16));
+  vram_adr(NTADR_B(3, 16));
   vram_write("B)Pee at the wall in hopes of     burning a hole through it", sizeof("B)Pee at the wall in hopes of burning a hole     through it"));
   
   ppu_on_all();
 }
+
+void orange_1c()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(2, 2));
+  vram_write("Player 1 grabs the orange and", sizeof("Player 1 grabs the orange and"));
+  
+  vram_adr(NTADR_B(2, 3));
+  vram_write("starts trying to peel it, and", sizeof("starts trying to peel it, and"));
+  
+  vram_adr(NTADR_B(2, 4));
+  vram_write("an intense blast hits Player", sizeof("an intense blast hits Player"));
+  
+  vram_adr(NTADR_B(2, 5));
+  vram_write("1 that feels like they've", sizeof("1 that feels like they've"));
+  
+  vram_adr(NTADR_B(2, 6));
+  vram_write("been split in half. Player 2", sizeof("been split in half. Player 2"));
+  
+  vram_adr(NTADR_B(2, 7));
+  vram_write("is debating over whether", sizeof("is debating over whether"));
+  
+  vram_adr(NTADR_B(2, 8));
+  vram_write("they should:", sizeof("they should:"));
+  
+  vram_adr(NTADR_B(3, 13));
+  vram_write("A)Try to wake up Player 1", sizeof("A)Try to wake up Player 1"));
+  
+  vram_adr(NTADR_B(3, 15));
+  vram_write("B)Continue peeling the            orange", sizeof("B)Continue peeling the           orange"));
+  
+  ppu_on_all();
+}
+
+void orange_1a2a()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(2, 2));
+  vram_write("When they hit the button, the", sizeof("When they hit the button, the"));
+  
+  vram_adr(NTADR_B(2, 3));
+  vram_write("door slams shut and the room", sizeof("door slams shut and the room"));
+  
+  vram_adr(NTADR_B(2, 4));
+  vram_write("starts filling up with orange", sizeof("starts filling up with orange"));
+  
+  vram_adr(NTADR_B(2, 5));
+  vram_write("juice! The players need to", sizeof("juice! The players need to"));
+  
+  vram_adr(NTADR_B(2, 6));
+  vram_write("find a way out quickly, un-", sizeof("find a way out quicky, un-"));
+  
+  vram_adr(NTADR_B(2, 7));
+  vram_write("less they want to drown while", sizeof("less they want to drown while"));
+  
+  vram_adr(NTADR_B(2, 8));
+  vram_write("nourished with Vitamin C!!", sizeof("nourished with Vitamin C!!"));
+  
+  vram_adr(NTADR_B(3, 13));
+  vram_write("A)Try to drink the orange         juice", sizeof("A)Try to drink the orange         juice"));
+  
+  vram_adr(NTADR_B(3, 15));
+  vram_write("B)Use orange peels to clog        source of orange juice", sizeof("B)Use orange peels to clog        source of orange juice"));
+  
+  ppu_on_all();
+}
+
+
