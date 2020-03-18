@@ -293,7 +293,26 @@ void orange_1c2a()
   vram_adr(NTADR_B(2, 17));
   vram_write("B)Go to Vitamin C makes u         pee (I.D. 2609)", sizeof("B)Go to Vitamin C makes u         pee (I.D. 2609)")); 
   
+  vram_adr(NTADR_B(2, 19));
+  vram_write("C)Make Player 1 grab smal-        ler orange (I.D. 2609)", sizeof("C)Make Player 1 grab smal-        ler orange (I.D. 2609)"));
+  
   ppu_on_all();
+}
+
+void orange_1c2b()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(1, 2));
+  vram_write("Player 2 grabs the orange and", sizeof("Player 2 grabs the orange and"));
+  
+  vram_adr(NTADR_B(1, 3));
+  vram_write("starts trying to peel it ag-", sizeof("starts trying to peel it ag-"));
+  
+  vram_adr(NTADR_B(1, 4));
+  vram_Write("ain. 
 }
 
 void orange_1a2a3a()
