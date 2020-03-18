@@ -6,7 +6,6 @@ void clear_screen()
   vram_adr(NAMETABLE_B);
   vram_fill(0x20, 32*30);
 }
-
 #include "orange.h"
 
 
@@ -230,7 +229,7 @@ void main(void)
         ppu_off();
         delay(20);
         oam_clear();
-        orange_1a2b();
+        orange_1c2a();
         music_is_playing = false;
         game_state = ORANGE;
       }
