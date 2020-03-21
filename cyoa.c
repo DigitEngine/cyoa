@@ -188,7 +188,7 @@ void main(void)
         title_blink();
         if(!music_is_playing)
         {
-          music_play(0); 
+          music_play(TITLE_M); 
           music_is_playing = true;
         }
       }
@@ -229,7 +229,7 @@ void main(void)
         ppu_off();
         delay(20);
         oam_clear();
-        orange_1c2a();
+        orange_1a2a3b();
         music_is_playing = false;
         game_state = ORANGE;
       }

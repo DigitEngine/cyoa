@@ -312,7 +312,33 @@ void orange_1c2b()
   vram_write("starts trying to peel it ag-", sizeof("starts trying to peel it ag-"));
   
   vram_adr(NTADR_B(1, 4));
-  vram_Write("ain. 
+  vram_write("ain. When they do, they get hit", sizeof("ain. When they do, they get hit"));
+  
+  vram_adr(NTADR_B(1, 5));
+  vram_write("with the same sort of blast", sizeof("with the same sort of blast"));
+  
+  vram_adr(NTADR_B(1, 6));
+  vram_write("and black out like Player 1.", sizeof("and black out like Player 1."));
+  
+  vram_adr(NTADR_B(1, 7));
+  vram_write("They both wake up inside the", sizeof("They both wake up inside the"));
+  
+  vram_adr(NTADR_B(1, 8));
+  vram_write("smaller orange, A.K.A. Alter-", sizeof("smaller orange, A.K.A. Alter-"));
+  
+  vram_adr(NTADR_B(1, 9));
+  vram_write("nate Dimension I.D. 2609.", sizeof("nate Dimension I.D. 2609."));
+  
+  vram_adr(NTADR_B(2, 14));
+  vram_write("A)Go to Citrus Twist (I.D.        2609)", sizeof("A)Go to Citrus Twist (I.D.        2609)"));
+  
+  vram_adr(NTADR_B(2, 16));
+  vram_write("B)Go to Vitamin C makes u         pee (I.D. 2609)", sizeof("B)Go to Vitamin C makes u         pee (I.D. 2609)")); 
+  
+  vram_adr(NTADR_B(2, 18));
+  vram_write("C)Make Player 1 grab smal-        ler orange (I.D. 2609)", sizeof("C)Make Player 1 grab smal-        ler orange (I.D. 2609)"));
+  
+  ppu_on_all();
 }
 
 void orange_1a2a3a()
@@ -353,4 +379,59 @@ void orange_1a2a3b()
   clear_screen();
   
   vram_adr(NTADR_B(1, 2));
+  vram_write("They both grab a bunch of or-", sizeof("They both grab a bunch of or-"));
+  
+  vram_adr(NTADR_B(1, 3));
+  vram_write("ange peels and find several", sizeof("ange peels and find several"));
+  
+  vram_adr(NTADR_B(1, 4));
+  vram_write("holes in the floor that orange", sizeof("holes in the floor that orange"));
+  
+  vram_adr(NTADR_B(1, 5));
+  vram_write("juice are spraying out of. They", sizeof("juice are spraying out of. They"));
+  
+  vram_adr(NTADR_B(1, 6));
+  vram_write("proceed to shove the holes full", sizeof("proceed to shove the holes full"));
+  
+  vram_adr(NTADR_B(1, 7));
+  vram_write("of the peels, and the flow of", sizeof("of the peels, and the flow of"));
+  
+  vram_adr(NTADR_B(1, 8));
+  vram_write("the orange juice stops. But,", sizeof("the orange juice stops. But,"));
+  
+  vram_adr(NTADR_B(1, 9));
+  vram_write("the juice is unusually acidic,", sizeof("the juice is unusually acidic,"));
+  
+  vram_adr(NTADR_B(1, 10));
+  vram_write("and will probably eat right", sizeof("and will probably eat right"));
+  
+  vram_adr(NTADR_B(1, 11));
+  vram_write("through the peels in a few mi-", sizeof("through the peels in a few mi-"));
+  
+  vram_adr(NTADR_B(1, 12));
+  vram_write("nutes.", sizeof("nutes."));
+  
+  vram_adr(NTADR_B(2, 17));
+  vram_write("A)Eat orange peels while          thinking about how to           escape", sizeof("A)Eat orange peels while          thinking about how to           escape"));
+  
+  vram_adr(NTADR_B(2, 20));
+  vram_write("B)Call upon the ancient force     of the gods", sizeof("B)Call upon the ancient force     of the gods"));
+  
+  ppu_on_all();
 }
+
+void orange_1a2a3c()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  // Enter Dialogue/Choices here
+  
+  ppu_on_all();
+}
+
+
+
+
+
