@@ -426,7 +426,50 @@ void orange_1a2a3c()
   
   clear_screen();
   
-  // Enter Dialogue/Choices here
+  vram_adr(NTADR_B(1, 2));
+  vram_write("Player 1 and Player 2 start", sizeof("Player 1 and Player 2 start"));
+  
+  vram_adr(NTADR_B(1, 3));
+  vram_write("chanting... Soon, they hear a", sizeof("chanting... Soon, they hear a"));
+  
+  vram_adr(NTADR_B(1, 4));
+  vram_write("faint rumble and the entire", sizeof("faint rumble and the entire"));
+  
+  vram_adr(NTADR_B(1, 5));
+  vram_write("universe starts shaking!! Not", sizeof("universe starts shaking!! Not"));
+  
+  vram_adr(NTADR_B(1, 6));
+  vram_write("long afterwards, a blast of", sizeof("long afterwards, a blast of"));
+  
+  vram_adr(NTADR_B(1, 7));
+  vram_write("blinding white light shines", sizeof("blinding white light shines"));
+  
+  vram_adr(NTADR_B(1, 8));
+  vram_write("down on the orange and every-", sizeof("down on the orange and every-"));
+  
+  vram_adr(NTADR_B(1, 9));
+  vram_write("thing disintegrates!! They", sizeof("thing disintegrates!! They"));
+  
+  vram_adr(NTADR_B(1, 10));
+  vram_write("got out, but they're now just", sizeof("got out, but they're now just"));
+  
+  vram_adr(NTADR_B(1, 11));
+  vram_write("simply piles of stardust.", sizeof("simply piles of stardust."));
+  
+  vram_adr(NTADR_B(1, 12));
+  vram_write("They were warned.", sizeof("They were warned."));
+  
+  vram_adr(NTADR_B(10, 14));
+  vram_write("GAME OVER", sizeof("GAME OVER"));
+  
+  vram_adr(NTADR_B(10, 15));
+  vram_write("TRY AGAIN?", sizeof("TRY AGAIN?"));
+  
+  vram_adr(NTADR_B(12, 20));
+  vram_write(" Yes", 4);
+  
+  vram_adr(NTADR_B(12, 22));
+  vram_write(" No", 3);
   
   ppu_on_all();
 }
