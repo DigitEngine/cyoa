@@ -474,7 +474,44 @@ void orange_1a2a3c()
   ppu_on_all();
 }
 
+void orange_1a2b3a()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(1, 2));
+  vram_write("They go back inside Citrus      Twist.", sizeof("They go back inside Citrus      Twist."));
+  
+  vram_adr(NTADR_B(2, 7));
+  vram_write("A)Smack the button!! >:D", sizeof("A)Smack the button!! >:D"));
+  
+  vram_adr(NTADR_B(2, 9));
+  vram_write("B)Go back to the main room", sizeof("B)Go back to the main room"));
+  
+  
+  ppu_on_all();
+}
 
+void orange_1a2b3b()
+{
+  orange_1b();
+}
+
+void orange_1a2b3c()
+{
+  orange_1c();
+}
+
+void orange_1b2a3a()
+{
+  ppu_off();
+  
+  clear_screen();
+  
+  vram_adr(NTADR_B(1, 2));
+  vram_write("
+}
 
 
 
