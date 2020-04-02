@@ -510,7 +510,6 @@ void orange_1b2a3a()
   clear_screen();
   
   vram_adr(NTADR_B(1, 2));
-  vram_write("
 }
 
 
