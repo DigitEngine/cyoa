@@ -229,7 +229,7 @@ void main(void)
         ppu_off();
         delay(20);
         oam_clear();
-        orange_1a2b3a();
+        orange_1b2a3b();
         music_is_playing = false;
         game_state = ORANGE;
       }

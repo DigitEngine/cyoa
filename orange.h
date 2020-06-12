@@ -510,7 +510,33 @@ void orange_1b2a3a()
   clear_screen();
   
   vram_adr(NTADR_B(1, 2));
+  vram_write("Both of their healths are half", sizeof("Both of their healths are half"));
+  
+  vram_adr(NTADR_B(1, 3));
+  vram_write("of what their starting health", sizeof("of what their starting health"));
+  
+  vram_adr(NTADR_B(1, 4));
+  vram_write("was. If they have any", sizeof("was. If they have any"));
+  
+  vram_adr(NTADR_B(1, 5));
+  vram_write("intellect at all, they'll stop", sizeof("intellect at all, they'll stop"));
+  
+  vram_adr(NTADR_B(1, 6));
+  vram_write("drinking their own pee.", sizeof("drinking their own pee."));
+  
+  vram_adr(NTADR_B(2, 11));
+  vram_write("A)Attempt to drink the pee", sizeof("A)Attempt to drink the pee"));
+  
+  vram_adr(NTADR_B(2, 13));
+  vram_write("B)Pee at the wall in hopes of", sizeof("B)Pee at the wall in hopes of"));
+  
+  vram_adr(NTADR_B(4, 14));
+  vram_write("burning a hole through it", sizeof("burning a hole through it"));
+  
+  ppu_on_all();
 }
 
-
-
+void orange_1b2a3b()
+{
+  orange_1b2b();
+}
