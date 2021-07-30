@@ -39,10 +39,10 @@ void orange_1a()
   vram_write("Player 1 and Player 2 go", sizeof("Player 1 and Player 2 go"));
   
   vram_adr(NTADR_B(1, 3));
-  vram_write("inside Citrus Twist. They", sizeof("inside Citrus Twist. They"));
+  vram_write("inside Citrus Twist. There", sizeof("inside Citrus Twist. There"));
   
   vram_adr(NTADR_B(1, 4));
-  vram_write("orange peels on the ground,", sizeof("orange peels on the ground,"));
+  vram_write("are orange peels on the ground,", sizeof("are orange peels on the ground,"));
   
   vram_adr(NTADR_B(1, 5));
   vram_write("and a giant red button in", sizeof("and a giant red button in"));
@@ -219,7 +219,7 @@ void orange_1b2a()
   vram_write("knocked down by 25%.", sizeof("knocked down by 25%."));
   
   vram_adr(NTADR_B(2, 12));
-  vram_write("A)Attempt to drink the pee", sizeof("A)Attempt to drink the pee"));
+  vram_write("A)Try to drink pee again", sizeof("A)Try to drink pee again"));
   
   vram_adr(NTADR_B(2, 14));
   vram_write("B)Pee at the wall in hopes of     burning a hole through it", sizeof("B)Pee at the wall in hopes of     burning a hole through it"));
@@ -267,33 +267,36 @@ void orange_1c2a()
   vram_write("and starts shaking them, try-", sizeof("and starts shaking them, try-"));
   
   vram_adr(NTADR_B(1, 4));
-  vram_write("ing to wake them up. When they", sizeof("ing to wake them up. When they"));
+  vram_write("ing to wake them up. When", sizeof("ing to wake them up. When"));
   
   vram_adr(NTADR_B(1, 5));
-  vram_write("make physical contact with", sizeof("make physical contact with"));
+  vram_write("Player 2 makes physical", sizeof("Player 2 makes physical"));
   
   vram_adr(NTADR_B(1, 6));
-  vram_write("their skin, they get hit with", sizeof("their skin, they get hit with"));
+  vram_write("contact with Player 1's", sizeof("contact with Player 1's"));
   
   vram_adr(NTADR_B(1, 7));
-  vram_write("the same blast and black out", sizeof("the same blast and black out"));
+  vram_write("skin, they get hit with", sizeof("skin, they get hit with"));
   
   vram_adr(NTADR_B(1, 8));
-  vram_write("as well. They both wake up in-", sizeof("as well. They both wake up in-"));
+  vram_write("the same blast and black out", sizeof("the same blast and black out"));
   
   vram_adr(NTADR_B(1, 9));
-  vram_write("side the smaller orange, A.K.A.", sizeof("side the smaller orange, A.K.A."));
+  vram_write("as well. They both wake up in-", sizeof("as well. They both wake up in-"));
   
   vram_adr(NTADR_B(1, 10));
+  vram_write("side the smaller orange, A.K.A.", sizeof("side the smaller orange, A.K.A."));
+  
+  vram_adr(NTADR_B(1, 11));
   vram_write("Alternate Dimension I.D. 2609.", sizeof("Alternate Dimension I.D. 2609."));
   
-  vram_adr(NTADR_B(2, 15));
+  vram_adr(NTADR_B(2, 16));
   vram_write("A)Go to Citrus Twist (I.D.        2609)", sizeof("A)Go to Citrus Twist (I.D.        2609)"));
   
-  vram_adr(NTADR_B(2, 17));
+  vram_adr(NTADR_B(2, 18));
   vram_write("B)Go to Vitamin C makes u         pee (I.D. 2609)", sizeof("B)Go to Vitamin C makes u         pee (I.D. 2609)")); 
   
-  vram_adr(NTADR_B(2, 19));
+  vram_adr(NTADR_B(2, 20));
   vram_write("C)Make Player 1 grab smal-        ler orange (I.D. 2609)", sizeof("C)Make Player 1 grab smal-        ler orange (I.D. 2609)"));
   
   ppu_on_all();
