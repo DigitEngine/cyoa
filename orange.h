@@ -296,9 +296,6 @@ void orange_1c2a()
   vram_adr(NTADR_B(2, 18));
   vram_write("B)Go to Vitamin C makes u         pee (I.D. 2609)", sizeof("B)Go to Vitamin C makes u         pee (I.D. 2609)")); 
   
-  vram_adr(NTADR_B(2, 20));
-  vram_write("C)Make Player 1 grab smal-        ler orange (I.D. 2609)", sizeof("C)Make Player 1 grab smal-        ler orange (I.D. 2609)"));
-  
   ppu_on_all();
 }
 
@@ -391,7 +388,7 @@ void orange_1a2a3b()
   vram_write("holes in the floor that orange", sizeof("holes in the floor that orange"));
   
   vram_adr(NTADR_B(1, 5));
-  vram_write("juice are spraying out of. They", sizeof("juice are spraying out of. They"));
+  vram_write("juice is spraying out of. They", sizeof("juice are spraying out of. They"));
   
   vram_adr(NTADR_B(1, 6));
   vram_write("proceed to shove the holes full", sizeof("proceed to shove the holes full"));
